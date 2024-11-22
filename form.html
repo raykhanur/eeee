@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа | Rai&Naz</title>
+    <link rel="stylesheet" href="assets/css/styles.css"> <!-- Подключение основного CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo">Rai&Naz</div>
+            <nav class="nav">
+                <a class="nav__link" href="index.html">Главная</a>
+                <a class="nav__link" href="bouquets.html">Букеты</a>
+                <a class="nav__link" href="bento.html">Бенто торты</a>
+                <a class="nav__link" href="blog.html">Блог</a>
+                <a class="nav__link" href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="order-form">
+    <div class="container">
+        <h1>Оформить заказ</h1>
+        <p>Заполните форму, чтобы заказать букет:</p>
+        <form id="order-form" onsubmit="redirectToWhatsAppWithImage(event)">
+            <div class="form__group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+            </div>
+            <div class="form__group">
+                <label for="email">Ваш email</label>
+                <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+            </div>
+            <div class="form__group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="Введите ваш телефон" required>
+            </div>
+            <div class="form__group">
+                <label for="bouquet">Выберите букет</label>
+                <select id="bouquet" name="bouquet" required>
+                    <option value="bouquet1">Зимний букет</option>
+                    <option value="bouquet2">Роскошный букет</option>
+                    <option value="bouquet3">Нежный букет</option>
+                    <option value="bouquet4">Яркий букет</option>
+                </select>
+            </div>
+            <div class="form__group">
+                <label for="message">Комментарий</label>
+                <textarea id="message" name="message" placeholder="Оставьте комментарий" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn">Оформить заказ</button>
+        </form>
+<div id="image-container" style="display: none; text-align: center; margin-top: 20px;">
+    <img src="assets/images/thank-you.jpg" alt="Спасибо за заказ!" style="max-width: 20%; height: auto;">
+</div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Rai&Naz. Все права защищены.</p>
+    </div>
+</footer>
+
+<script>
+    function redirectToWhatsAppWithImage(event) {
+        event.preventDefault();
+
+        // Получение данных из формы
+        const name = encodeURIComponent(document.getElementById("name").value);
+        const phone = encodeURIComponent(document.getElementById("phone").value);
+        const bouquet = encodeURIComponent(document.getElementById("bouquet").value);
+        const message = encodeURIComponent(document.getElementById("message").value);
+
+        const whatsappUrl = `https://wa.me/77770766760?text=Здравствуйте!%20%F0%9F%91%8B%20Меня%20зовут%20${name}.%20Мой%20телефон:%20${phone}.%20Я%20хочу%20заказать%20${bouquet}.%20Комментарий:%20${message}.`;
+
+        // Показываем картинку
+        const imageContainer = document.getElementById("image-container");
+        imageContainer.style.display = "block";
+
+        // Переход на WhatsApp после 3 секунд
+        setTimeout(() => {
+            window.location.href = whatsappUrl;
+        }, 10000);
+    }
+</script>
+
+
+</body>
+</html>
